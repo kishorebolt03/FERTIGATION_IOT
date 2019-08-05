@@ -1,0 +1,49 @@
+int relay_pin = D0;
+
+int moist_pin = A0;
+
+int moist_value ;
+
+void setup() {
+
+   Serial.begin(9600);
+
+   Serial.println("Reading From the Sensor ...");
+
+   delay(2000);
+
+   pinMode(relay_pin,OUTPUT);
+
+   }
+
+void loop() {
+
+   moist_value= analogRead(moist_pin);
+
+   moist_value = map(moist_value,1023,0,0,100);
+
+   Serial.print("Mositure : ");
+
+   Serial.print(moist_value);
+
+   Serial.println("%");
+
+   delay(1000);
+
+   if(moist_value<=30)
+
+   {
+
+    digitalWrite(relay_pin,HIGH);
+
+   }
+
+   else
+
+   {
+
+    digitalWrite(relay_pin,LOW);
+    
+   }
+   
+   }
